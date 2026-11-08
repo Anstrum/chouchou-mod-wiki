@@ -70,11 +70,11 @@ flowchart TD
 ```
 
 ### 1. Physique du Joyau Flottant
-- **Hauteur de repos** : Le cristal flotte à environ $0.25\text{ bloc}$ au-dessus de la surface supérieure de l'autel (hauteur totale $\approx 1.0\text{ bloc}$).
+- **Hauteur de repos** : Le cristal flotte à environ 0.25 bloc au-dessus de la surface supérieure de l'autel (hauteur totale environ 1.0 bloc).
 - **Oscillation verticale (Bobbing)** : Mouvement sinusoïdal doux :
-  $$\Delta y = \sin\left(\frac{\text{clientTicks}}{12.5}\right) \times 0.06$$
+  `Δy = sin(clientTicks / 12.5) × 0.06`
 - **Rotation continue** : Rotation fluide sur l'axe Y :
-  $$\theta_y = (\text{clientTicks} \times 1.5^\circ) \pmod{360^\circ}$$
+  `θy = (clientTicks × 1.5°) mod 360°`
 
 ### 2. Particules & Ambiance
 - **Particules passives** : De temps à autre (tous les 10 à 20 ticks), de fines étincelles lumineuses violettes et dorées jaillissent du cristal.
