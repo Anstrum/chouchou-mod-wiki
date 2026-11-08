@@ -57,6 +57,8 @@ function initTabs() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  window.switchTabTo = switchTab;
+
   navBtns.forEach(btn => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
