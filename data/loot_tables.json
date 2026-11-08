@@ -1,0 +1,239 @@
+﻿[
+    {
+        "id":  "trial_chambers",
+        "name":  "Chambres d\u0027Épreuve (Trial Chambers)",
+        "description":  "Chambres souterraines en cuivre abritant les Coffres-forts sinistres (Ominous Vaults).",
+        "icon":  "🗝️",
+        "items":  [
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Noyau Lourd (Heavy Core)",
+                          "rate":  "7.5%",
+                          "note":  "Composant exclusif pour forger la Masse (Mace)"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Livre : Explosion de vent (Wind Burst)",
+                          "rate":  "5.5%",
+                          "note":  "Enchantement exclusif Masse (propulsion au coup réussi)"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Livre : Densité (Density)",
+                          "rate":  "11.4%",
+                          "note":  "Dégâts accrus par bloc de chute"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Livre : Brèche (Breach)",
+                          "rate":  "11.4%",
+                          "note":  "Réduit l\u0027armure ennemie"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Modèle de forge : Flux (Flow Trim)",
+                          "rate":  "22.5%",
+                          "note":  "Finition d\u0027armure Breeze"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Bouteille sinistre (Ominous Bottle)",
+                          "rate":  "18.6%",
+                          "note":  "Déclenche l\u0027effet Bad Omen à volonté"
+                      },
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Pomme dorée enchantée (Notch)",
+                          "rate":  "3.1%",
+                          "note":  "Survie extrême \u0026 régénération"
+                      }
+                  ],
+        "category":  "Overworld",
+        "version":  "1.21"
+    },
+    {
+        "version":  "1.19+",
+        "id":  "ancient_city",
+        "category":  "Overworld (Tréfonds)",
+        "name":  "Cités Antiques (Deep Dark)",
+        "description":  "Sous la couche Y: -50, ruines de Sculk renfermant les plus grands trésors terrestres.",
+        "icon":  "🌌",
+        "image":  "assets/ancient_city_loot.jpg",
+        "items":  [
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Modèle de forge : Silence (Silence Trim)",
+                          "rate":  "1.2%",
+                          "note":  "Le motif d\u0027armure le plus rare du jeu"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Modèle de forge : Gardien (Ward Trim)",
+                          "rate":  "5.0%",
+                          "note":  "Motif orné inspiré du Warden"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Livre : Furtivité Rapide (Swift Sneak I-III)",
+                          "rate":  "23.2%",
+                          "note":  "Marche accroupie à vitesse normale (jambières)"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Fragment d\u0027écho (Echo Shard)",
+                          "rate":  "29.8% (1-3)",
+                          "note":  "Composant pour la Table de Transcendance \u0026 Boussole"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Pomme dorée enchantée (Notch)",
+                          "rate":  "8.4%",
+                          "note":  "Régénération V et Absorption IV"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Fragment de disque 5",
+                          "rate":  "29.8% (1-3)",
+                          "note":  "Reconstitue le disque de musique 5"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Houe en diamant enchantée",
+                          "rate":  "16.1%",
+                          "note":  "Enchantements de haut niveau"
+                      }
+                  ]
+    },
+    {
+        "id":  "bastion",
+        "name":  "Bastions du Nether (Remnants)",
+        "description":  "Forteresses Piglins réparties en 4 variantes (Salle au trésor, Écuries, Pont, Logements).",
+        "icon":  "🐗",
+        "items":  [
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Modèle : Amélioration Netherite",
+                          "rate":  "100% (Coffre Trésor) / 10% (Général)",
+                          "note":  "Obligatoire pour transformer Diamant en Netherite"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Débris antiques (Ancient Debris)",
+                          "rate":  "13.5% (Trésor)",
+                          "note":  "Minerai brut de Netherite"
+                      },
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Lingot de Netherite",
+                          "rate":  "4.2% (Trésor)",
+                          "note":  "Lingot raffiné pur"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Magnétite (Lodestone)",
+                          "rate":  "100% (Coffre Trésor)",
+                          "note":  "Point d\u0027ancrage de boussole fixe"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Disque musical : Pigstep",
+                          "rate":  "5.6%",
+                          "note":  "Composé par Lena Raine"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Modèle : Groin (Snout Trim)",
+                          "rate":  "8.3%",
+                          "note":  "Motif Piglin pour armures"
+                      }
+                  ],
+        "category":  "Nether",
+        "version":  "1.16+"
+    },
+    {
+        "id":  "end_city",
+        "name":  "Cités de l\u0027End \u0026 Navires",
+        "description":  "Îles extérieures après le Dragon. Équipements diamant T30+ sur-enchantés.",
+        "icon":  "🚀",
+        "items":  [
+                      {
+                          "rarity":  "legendary",
+                          "name":  "Élytres (Elytra)",
+                          "rate":  "100% (Cadre Navire)",
+                          "note":  "Vol plané dans les airs"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Tête de Dragon",
+                          "rate":  "100% (Proue Navire)",
+                          "note":  "Trophée et animation mâchoire"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Armure en diamant enchantée",
+                          "rate":  "13.3% par pièce",
+                          "note":  "Budget d\u0027enchantement niveau 20-39"
+                      },
+                      {
+                          "rarity":  "epic",
+                          "name":  "Armes \u0026 Outils en diamant",
+                          "rate":  "13.3% par pièce",
+                          "note":  "Enchantements T30+ natifs"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Carapace de Shulker",
+                          "rate":  "50% à 100% (Drop)",
+                          "note":  "Permet de concevoir les Boîtes de Shulker"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Modèle : Flèche (Spire Trim)",
+                          "rate":  "6.7%",
+                          "note":  "Motif d\u0027armure de l\u0027End"
+                      }
+                  ],
+        "category":  "End",
+        "version":  "1.9+"
+    },
+    {
+        "id":  "nether_fortress",
+        "name":  "Forteresses du Nether",
+        "description":  "Ponts de briques du Nether, spawner de Blazes et verrues.",
+        "icon":  "🏰",
+        "items":  [
+                      {
+                          "rarity":  "rare",
+                          "name":  "Modèle : Côtes (Rib Trim)",
+                          "rate":  "6.7%",
+                          "note":  "Motif squelette Wither"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Selle",
+                          "rate":  "35.3%",
+                          "note":  "Monture chevaux, arpenteurs"
+                      },
+                      {
+                          "rarity":  "rare",
+                          "name":  "Armure pour cheval en diamant",
+                          "rate":  "11.8%",
+                          "note":  "Protection maximale de monture"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Verrues du Nether",
+                          "rate":  "19.0% (3-7)",
+                          "note":  "Ingrédient indispensable alchimie"
+                      },
+                      {
+                          "rarity":  "uncommon",
+                          "name":  "Diamants \u0026 Lingots d\u0027or",
+                          "rate":  "4.0% à 19.0%",
+                          "note":  "Métaux précieux"
+                      }
+                  ],
+        "category":  "Nether",
+        "version":  "1.0+"
+    }
+]

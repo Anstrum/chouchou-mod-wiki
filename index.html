@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChouChou Mod — Wiki & Grimoire Officiel (1.21.1)</title>
+  <meta name="description" content="Wiki interactif du ChouChou Mod : Grimoire des 89 enchantements, Calculateur de Transcendance, Tables de Butin 1.21 et Sacs à dos.">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <span style="font-size: 1.5rem;">🔮</span>
+      <span class="brand-title">ChouChou Mod</span>
+      <span class="badge-version">v1.21.1</span>
+    </div>
+
+    <nav class="main-nav">
+      <button class="nav-btn active" data-tab="enchantments">
+        <span>✨</span> Grimoire (89)
+      </button>
+      <button class="nav-btn" data-tab="transcendence">
+        <span>🔮</span> Transcendance & Crafts
+      </button>
+      <button class="nav-btn" data-tab="loot">
+        <span>🏆</span> Trésors & Butins 1.21
+      </button>
+      <button class="nav-btn" data-tab="backpacks">
+        <span>🎒</span> Sacs des Monstres
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- TAB 1: ENCHANTMENTS -->
+    <section id="tab-enchantments" class="tab-content active">
+      <div class="hero-banner">
+        <h1 class="hero-title">✨ Grimoire des 89 Enchantements</h1>
+        <p class="hero-subtitle">
+          Catalogue unifié de tous les enchantements du jeu et du ChouChou Mod. Filtrez par type d'équipement, statut ou cherchez un mot-clé en temps réel.
+        </p>
+      </div>
+
+      <!-- Filters & Search -->
+      <div class="filter-bar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Rechercher par nom, mot-clé, effet ou identifiant technique (ex: auto_smelt, pioche, feu, X)...">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+          <div class="pills-group">
+            <button class="filter-pill cat-pill active" data-category="all">Tous (89)</button>
+            <button class="filter-pill cat-pill" data-category="mining">⛏️ Outils & Minage</button>
+            <button class="filter-pill cat-pill" data-category="melee">⚔️ Combat de Mêlée</button>
+            <button class="filter-pill cat-pill" data-category="armor">🦺 Armures & Survie</button>
+            <button class="filter-pill cat-pill" data-category="bow">🏹 Arcs & Arbalètes</button>
+            <button class="filter-pill cat-pill" data-category="trident">🔱 Tridents & Masse</button>
+            <button class="filter-pill cat-pill" data-category="utility">🛡️ Boucliers & Pêche</button>
+          </div>
+
+          <div class="pills-group">
+            <button id="toggle-transcended" class="filter-pill purple">
+              🔮 Transcendance X uniquement
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.88rem;">
+        <span id="enchantments-count">Chargement du grimoire...</span>
+        <span>Astuce : survolez un enchantement pour voir les détails de transcendance.</span>
+      </div>
+
+      <!-- Dynamic Cards Grid -->
+      <div id="enchantments-grid" class="cards-grid"></div>
+    </section>
+
+    <!-- TAB 2: TRANSCENDENCE & CALCULATOR -->
+    <section id="tab-transcendence" class="tab-content">
+      <div class="hero-banner">
+        <h1 class="hero-title">🔮 Système de Transcendance</h1>
+        <p class="hero-subtitle">
+          L'artisanat supérieur qui permet de briser les limites de niveau et d'élever les enchantements jusqu'au rang X.
+        </p>
+      </div>
+
+      <!-- Calculator Card -->
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.75rem; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--purple); display: flex; align-items: center; gap: 0.5rem;">
+          <span>⚡</span> Calculateur de Coût de Transcendance
+        </h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
+          Sélectionnez votre enchantement et votre palier cible pour calculer instantanément les ressources requises :
+        </p>
+
+        <div class="calc-container" style="margin-top: 0; padding: 0; background: transparent; border: none;">
+          <div>
+            <div class="calc-control-group">
+              <label class="calc-label">Enchantement transcendant :</label>
+              <select id="calc-enchant-select" class="calc-select"></select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="calc-control-group">
+                <label class="calc-label">Niveau Actuel :</label>
+                <select id="calc-from-lvl" class="calc-select">
+                  <option value="5" selected>Niveau V (Max standard)</option>
+                  <option value="6">Niveau VI</option>
+                  <option value="7">Niveau VII</option>
+                  <option value="8">Niveau VIII</option>
+                  <option value="9">Niveau IX</option>
+                </select>
+              </div>
+
+              <div class="calc-control-group">
+                <label class="calc-label">Niveau Cible :</label>
+                <select id="calc-to-lvl" class="calc-select">
+                  <option value="6">Niveau VI</option>
+                  <option value="7">Niveau VII</option>
+                  <option value="8">Niveau VIII</option>
+                  <option value="9">Niveau IX</option>
+                  <option value="10" selected>Niveau X (Ultime)</option>
+                </select>
+              </div>
+            </div>
+
+            <p id="calc-hint" style="font-size: 0.88rem; color: var(--primary); margin-top: 0.5rem;">
+              Sélectionnez vos paliers pour afficher le coût.
+            </p>
+          </div>
+
+          <div class="calc-result-box">
+            <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 1rem;">Ressources Nécessaires</h3>
+
+            <div class="cost-row">
+              <span class="cost-label">💎 Cristaux d'Éther (VI ➔ IX)</span>
+              <span id="cost-ether" class="cost-value purple">20</span>
+            </div>
+
+            <div class="cost-row">
+              <span class="cost-label">⭐ Cristal de Transcendance (IX ➔ X)</span>
+              <span id="cost-transc" class="cost-value gold">1</span>
+            </div>
+
+            <div class="cost-row">
+              <span class="cost-label">🧪 Coût Total en XP</span>
+              <span id="cost-xp" class="cost-value green">65 Niveaux</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crafts & Showcase Grid -->
+      <h2 style="font-size: 1.5rem; margin-bottom: 1.25rem;">🔨 Recettes & Blocs de Transcendance</h2>
+
+      <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));">
+        <div class="enchant-card">
+          <div class="card-top">
+            <span class="card-title">Table de Transcendance</span>
+            <span class="level-badge transcended">BLOC MAÎTRE</span>
+          </div>
+          <img src="assets/transcendence_table.jpg" alt="Table de Transcendance" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin: 0.5rem 0 1rem 0;" />
+          <p class="card-effect">
+            <strong>Recette dans l'établi :</strong><br>
+            • Ligne 1 : Fragment d'Écho • <strong>Cristal de Transcendance</strong> • Fragment d'Écho<br>
+            • Ligne 2 : Lingot de Netherite • Cristal de l'End • Lingot de Netherite<br>
+            • Ligne 3 : Obsidienne pleureuse × 3
+          </p>
+        </div>
+
+        <div class="enchant-card">
+          <div class="card-top">
+            <span class="card-title">Cristal de Transcendance</span>
+            <span class="level-badge transcended">ITEM CLÉ</span>
+          </div>
+          <img src="assets/cristal_transcendance.jpg" alt="Cristal de Transcendance" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin: 0.5rem 0 1rem 0;" />
+          <p class="card-effect">
+            <strong>Recette dans l'établi :</strong><br>
+            • Ligne 1 : Cristal d'Éther • Lingot d'Or • Cristal d'Éther<br>
+            • Ligne 2 : Lingot d'Or • <strong>Étoile du Nether</strong> • Lingot d'Or<br>
+            • Ligne 3 : Cristal d'Éther • Lingot d'Or • Cristal d'Éther
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: LOOT TABLES -->
+    <section id="tab-loot" class="tab-content">
+      <div class="hero-banner">
+        <h1 class="hero-title">🏆 Guide Officiel des Trésors & Butins 1.21</h1>
+        <p class="hero-subtitle">
+          Statistiques, pourcentages d'apparition et trésors exclusifs de chaque structure majeure de Minecraft.
+        </p>
+      </div>
+
+      <div id="loot-container"></div>
+    </section>
+
+    <!-- TAB 4: BACKPACKS -->
+    <section id="tab-backpacks" class="tab-content">
+      <div id="backpacks-content"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>ChouChou Mod — Minecraft 1.21.1 NeoForge • Application Web & Grimoire Développé par Antigravity</p>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
