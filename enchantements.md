@@ -1,3 +1,8 @@
+﻿---
+layout: default
+title: "Grimoire des 89 Enchantements — ChouChou Mod"
+---
+
 # 📜 Catalogue Intégral Fusionné des 89 Enchantements (Minecraft 1.21.1 & ChouChou Mod)
 
 > **Statut global** : Mis à jour avec les directives et commentaires utilisateur.  

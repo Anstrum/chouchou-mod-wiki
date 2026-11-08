@@ -1,3 +1,8 @@
+﻿---
+layout: default
+title: "Équilibrage des Sacs de Monstres — ChouChou Mod"
+---
+
 # 🎒 Analyse & Spécifications des Sacs à Dos des Monstres (Mob Backpacks)
 
 > **Référence** : Implémentation du système inspiré de *Sophisticated Backpacks* dans ChouChou Mod (`com.anstrum.chouchou.features.backpacks.mob`).

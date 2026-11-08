@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <!-- Favicon Minecraft/Gem -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="{{ '/' | relative_url }}" class="brand">
+      <span>🔮 ChouChou Mod</span>
+      <span class="brand-badge">Wiki 1.21.1</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="{{ '/' | relative_url }}">Accueil</a></li>
+        <li><a href="{{ '/enchantements' | relative_url }}">Enchantements</a></li>
+        <li><a href="{{ '/transcendance' | relative_url }}">Transcendance</a></li>
+        <li><a href="{{ '/loot_tables' | relative_url }}">Trésors & Butins</a></li>
+        <li><a href="{{ '/sacs_a_dos' | relative_url }}">Sacs à Dos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>ChouChou Mod — Minecraft 1.21.1 NeoForge • Documentation & Guide Officiel</p>
+  </footer>
+
+</body>
+</html>

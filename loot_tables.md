@@ -1,3 +1,8 @@
+﻿---
+layout: default
+title: "Guide des Butins & Trésors 1.21 — ChouChou Mod"
+---
+
 # 🏆 Guide Officiel des Tables de Butin & Trésors — Minecraft 1.21
 
 Ce guide récapitule les **meilleurs trésors et tables de butin officielles** des structures majeures de Minecraft. Idéal pour savoir exactement **où chercher**, **quoi trouver**, et les **chances d'obtention** lors de vos explorations !

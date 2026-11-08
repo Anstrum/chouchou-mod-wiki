@@ -1,3 +1,8 @@
+﻿---
+layout: default
+title: "Système de Transcendance — ChouChou Mod"
+---
+
 # 🌌 Système de Transcendance — Spécifications & Recettes (ChouChou Mod)
 
 > **Document de référence technique et design**  

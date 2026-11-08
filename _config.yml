@@ -1,0 +1,11 @@
+title: "ChouChou Mod — Wiki"
+description: "Documentation officielle, grimoire d'enchantements et système de Transcendance (Minecraft 1.21.1)"
+baseurl: "/chouchou-mod-wiki"
+url: "https://anstrum.github.io"
+markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

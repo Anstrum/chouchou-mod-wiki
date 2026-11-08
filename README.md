@@ -1,3 +1,8 @@
+﻿---
+layout: default
+title: "Accueil — ChouChou Mod Wiki"
+---
+
 # 📖 ChouChou Mod — Wiki Officiel
 
 Portail de documentation officiel du **ChouChou Mod** (Minecraft 1.21.1 NeoForge).  
