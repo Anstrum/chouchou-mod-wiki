@@ -134,7 +134,7 @@ function renderEnchantments() {
   });
 
   if (countEl) {
-    countEl.textContent = `${filtered.length} enchantement(s) sur 89`;
+    countEl.textContent = `${filtered.length} enchantement(s) répertorié(s)`;
   }
 
   if (filtered.length === 0) {
