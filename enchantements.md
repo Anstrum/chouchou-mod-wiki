@@ -3,7 +3,7 @@ layout: default
 title: "Grimoire des 89 Enchantements — ChouChou Mod"
 ---
 
-# 📜 Catalogue Intégral Fusionné des 89 Enchantements (Minecraft 1.21.1 & ChouChou Mod)
+# 📜 Catalogue Intégral Fusionné des 89 Enchantements (Minecraft 1.26.3 & ChouChou Mod)
 
 > **Statut global** : Mis à jour avec les directives et commentaires utilisateur.  
 > **Source de vérité absolue** : Tous les enchantements sont classés **par catégorie d'équipement**, sans aucune séparation entre Vanilla et Mod.  
@@ -45,7 +45,7 @@ title: "Grimoire des 89 Enchantements — ChouChou Mod"
 | **20** | **Butin** | `minecraft:looting` | ⏳ À valider | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +1 drop max supplémentaire par niveau. |
 | **21** | **Magnétisme** | `chouchou:magnetism` | ⏳ À valider | Outils, Toutes armes & **Plastron** | **10** *(5 / 10)* | Aspire les butins et XP dans un rayon de 3 + 2 × niveau blocs. |
 | **22** | **Acharnement** *(ex-Élan)*| `chouchou:momentum` | 🔄 **Renommé & Validé** | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +4% par coup / niveau sur frappes consécutives sur la même cible (fenêtre 2s à 7s). |
-| **23** | **Élan** *(ex-Précision)* | `chouchou:precision` | 🔄 **Renommé & Validé** | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +20% / niveau de dégâts en coup critique (saut) ou en sprint. |
+| **23** | **Impact Cinétique** | `chouchou:precision` | 🔄 **Renommé & Validé** | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +20% / niveau de dégâts en coup critique (saut) ou en sprint. |
 | **24** | **Faucheur** | `chouchou:reaper` | ⏳ À valider | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | Orbes d'XP bonus (+2 XP/niv) et répare l'arme au kill (+2 durabilité/niv). |
 | **25** | **Représailles** | `chouchou:retaliation` | ✅ **Validé** | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +10% / niveau de dégâts sur la prochaine frappe dans les 3s après avoir pris un coup. |
 | **26** | **Tranchant** | `minecraft:sharpness` | ⏳ À valider | Toutes les armes *(Épées, Haches, Masse, Tridents, Lances)* | **10** *(5 / 10)* | +0.5 × niveau + 0.5 dégâts nets. |

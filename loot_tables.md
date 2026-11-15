@@ -1,15 +1,15 @@
 ﻿---
 layout: default
-title: "Guide des Butins & Trésors 1.21 — ChouChou Mod"
+title: "Guide des Butins & Trésors 1.26.3 — ChouChou Mod"
 ---
 
-# 🏆 Guide Officiel des Tables de Butin & Trésors — Minecraft 1.21
+# 🏆 Guide Officiel des Tables de Butin & Trésors — Minecraft 1.26.3
 
-Ce guide récapitule les **meilleurs trésors et tables de butin officielles** des structures majeures de Minecraft. Idéal pour savoir exactement **où chercher**, **quoi trouver**, et les **chances d'obtention** lors de vos explorations !
+Ce guide récapitule les **meilleurs trésors et tables de butin officielles** des structures majeures de Minecraft 1.26.3. Idéal pour savoir exactement **où chercher**, **quoi trouver**, et les **chances d'obtention** lors de vos explorations !
 
 ---
 
-## 🏛️ 1. Chambres d'Épreuve (*Trial Chambers*) — Nouveauté 1.21
+## 🏛️ 1. Chambres d'Épreuve (*Trial Chambers*) — Coffres & Clés d'Épreuve
 
 Les chambres souterraines en cuivre abritent les **Coffres-forts classiques (*Vaults*)** et les **Coffres-forts sinistres (*Ominous Vaults*)**, ouverts avec leurs clés respectives.
 

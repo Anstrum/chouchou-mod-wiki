@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulateur RPG Mobs & Blood Moon — ChouChou</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    /* Custom scrollbar & visual polish */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+    .badge-standard { background: #374151; color: #f3f4f6; border: 1px solid #4b5563; }
+    .badge-elite { background: #78350f; color: #fef08a; border: 1px solid #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+    .badge-boss { background: #450a0a; color: #fca5a5; border: 1px solid #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.5); }
+    .tab-active { border-bottom: 2px solid #ef4444; color: #ef4444; font-weight: 600; }
+  </style>
+</head>
+<body class="bg-[var(--background,#0f172a)] text-[var(--foreground,#f8fafc)] antialiased p-4 m-0 font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-[var(--border,#334155)] gap-2">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="text-xl font-bold tracking-tight text-red-500">🌙 ChouChou RPG</span>
+        <span class="text-xs px-2 py-0.5 rounded bg-red-950/80 border border-red-700/60 text-red-300 font-mono">Blood Moon & Level Engine</span>
+      </div>
+      <p class="text-xs text-[var(--muted-foreground,#94a3b8)] mt-0.5">Simulateur de génération dynamique de monstres et calculatrice de niveau</p>
+    </div>
+    
+    <!-- Tab Controls -->
+    <div class="flex gap-2 text-xs bg-[var(--card,#1e293b)] p-1 rounded-lg border border-[var(--border,#334155)]">
+      <button onclick="setTab('reverse')" id="tab-btn-reverse" class="px-3 py-1.5 rounded tab-active transition-all">🎯 Générateur par Niveau</button>
+      <button onclick="setTab('manual')" id="tab-btn-manual" class="px-3 py-1.5 rounded text-[var(--muted-foreground,#94a3b8)] hover:text-white transition-all">🛠️ Calculateur Manuel</button>
+      <button onclick="setTab('bloodmoon')" id="tab-btn-bloodmoon" class="px-3 py-1.5 rounded text-[var(--muted-foreground,#94a3b8)] hover:text-white transition-all">🩸 Vagues Blood Moon</button>
+    </div>
+  </header>
+
+  <!-- TAB 1: REVERSE SPAWNER (Générateur par Niveau Cible) -->
+  <main id="tab-reverse" class="py-4 space-y-4">
+    <div class="bg-[var(--card,#1e293b)] p-4 rounded-xl border border-[var(--card-border,#334155)] shadow-lg space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex-1 w-full">
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-sm font-semibold flex items-center gap-2">
+              Niveau Cible du Monstre ($L_{\text{cible}}$)
+            </label>
+            <span id="target-lvl-display" class="text-lg font-bold font-mono text-red-400">Nv. 45</span>
+          </div>
+          <input type="range" id="target-lvl-slider" min="1" max="150" value="45" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-red-500" oninput="updateTargetLevel(this.value)">
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 sm:self-end">
+          <button onclick="setQuickLvl(12)" class="px-2.5 py-1 text-xs rounded bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300">Nv. 12 (Débutant)</button>
+          <button onclick="setQuickLvl(35)" class="px-2.5 py-1 text-xs rounded bg-amber-950/60 hover:bg-amber-900 border border-amber-600/70 text-amber-300">Nv. 35 (Élite ✦)</button>
+          <button onclick="setQuickLvl(70)" class="px-2.5 py-1 text-xs rounded bg-orange-950/60 hover:bg-orange-900 border border-orange-600/70 text-orange-300">Nv. 70 (Haut Élite)</button>
+          <button onclick="setQuickLvl(115)" class="px-2.5 py-1 text-xs rounded bg-red-950/60 hover:bg-red-900 border border-red-600/70 text-red-300">Nv. 115 (Boss ☠)</button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs text-[var(--muted-foreground,#94a3b8)] pt-2 border-t border-[var(--border,#334155)]">
+        <label class="flex items-center gap-1.5 cursor-pointer">
+          <input type="checkbox" id="cap-player" checked onchange="regenerate()" class="rounded accent-red-500">
+          Activer le Plafond Joueur ($L_{\text{mob}} \le L_{\text{joueur}}$)
+        </label>
+        <span class="text-slate-500">|</span>
+        <button onclick="regenerate()" class="text-red-400 hover:text-red-300 flex items-center gap-1 font-semibold">
+          🎲 Relancer la Génération
+        </button>
+      </div>
+    </div>
+
+    <!-- Mob Output Card -->
+    <div id="mob-card" class="bg-[var(--card,#1e293b)] p-5 rounded-xl border border-[var(--card-border,#334155)] shadow-xl relative overflow-hidden transition-all">
+      <!-- Injected by JS -->
+    </div>
+  </main>
+
+  <!-- TAB 2: MANUAL BUILDER (Calculateur Manuel) -->
+  <main id="tab-manual" class="py-4 space-y-4 hidden">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Col 1: Base Mob & Gear -->
+      <div class="bg-[var(--card,#1e293b)] p-4 rounded-xl border border-[var(--card-border,#334155)] space-y-3">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-700 pb-2">1. Espèce & Armement</h3>
+        
+        <div>
+          <label class="text-xs text-slate-300 block mb-1">Type de Monstre</label>
+          <select id="man-mob" class="w-full bg-slate-800 text-xs text-white rounded p-2 border border-slate-700" onchange="calculateManual()">
+            <option value="6">Zombie (Base: 6)</option>
+            <option value="8">Squelette (Base: 8)</option>
+            <option value="8">Araignée (Base: 8)</option>
+            <option value="12">Creeper (Base: 12)</option>
+            <option value="14">Noyé / Drowned (Base: 14)</option>
+            <option value="22">Wither Squelette (Base: 22)</option>
+            <option value="25">Piglin Brute (Base: 25)</option>
+            <option value="28">Enderman (Base: 28)</option>
+            <option value="120">Warden (Base: 120)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs text-slate-300 block mb-1">Arme en main</label>
+          <select id="man-weapon" class="w-full bg-slate-800 text-xs text-white rounded p-2 border border-slate-700" onchange="calculateManual()">
+            <option value="0">Aucune (0 pt)</option>
+            <option value="4">Épée / Arc en Pierre (+4 pts)</option>
+            <option value="8" selected>Épée / Arc en Fer (+8 pts)</option>
+            <option value="16">Épée / Arc en Diamant (+16 pts)</option>
+            <option value="24">Épée / Masse en Netherite (+24 pts)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs text-slate-300 block mb-1">Armure Portée</label>
+          <select id="man-armor" class="w-full bg-slate-800 text-xs text-white rounded p-2 border border-slate-700" onchange="calculateManual()">
+            <option value="0">Aucune (0 pt)</option>
+            <option value="7">Cuir Complet (+7 pts)</option>
+            <option value="13">Mailles / Or (+13 pts)</option>
+            <option value="22" selected>Fer Complet (+22 pts)</option>
+            <option value="39">Diamant Complet (+39 pts)</option>
+            <option value="55">Netherite Complète (+55 pts)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Col 2: Enchantments Selector -->
+      <div class="bg-[var(--card,#1e293b)] p-4 rounded-xl border border-[var(--card-border,#334155)] space-y-3 md:col-span-2">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-700 pb-2">2. Enchantements Actifs (Impact Combat)</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <!-- Inébranlable -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+            <div>
+              <span class="font-semibold text-red-300">Inébranlable (Steadfast)</span>
+              <p class="text-[10px] text-slate-400">Réduction globale -60% + Anti-recul</p>
+            </div>
+            <select id="man-ench-steadfast" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white" onchange="calculateManual()">
+              <option value="0">Off (0)</option>
+              <option value="1">I (+5)</option>
+              <option value="3">III (+15)</option>
+              <option value="5" selected>V (+25)</option>
+              <option value="8">VIII (+43)</option>
+              <option value="10">X (+55)</option>
+            </select>
+          </div>
+
+          <!-- Vampirisme -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+            <div>
+              <span class="font-semibold text-red-300">Vampirisme (Vampirism)</span>
+              <p class="text-[10px] text-slate-400">Vol de vie sur le joueur</p>
+            </div>
+            <select id="man-ench-vampirism" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white" onchange="calculateManual()">
+              <option value="0">Off (0)</option>
+              <option value="1">I (+5)</option>
+              <option value="3">III (+15)</option>
+              <option value="5">V (+25)</option>
+              <option value="10">X (+55)</option>
+            </select>
+          </div>
+
+          <!-- Tranchant / Puissance -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+            <div>
+              <span class="font-semibold text-amber-300">Tranchant / Puissance</span>
+              <p class="text-[10px] text-slate-400">Dégâts bruts de mêlée ou arc</p>
+            </div>
+            <select id="man-ench-sharpness" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white" onchange="calculateManual()">
+              <option value="0">Off (0)</option>
+              <option value="1">I (+4)</option>
+              <option value="3">III (+12)</option>
+              <option value="5" selected>V (+20)</option>
+              <option value="8">VIII (+35)</option>
+              <option value="10">X (+45)</option>
+            </select>
+          </div>
+
+          <!-- Vitalité -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+            <div>
+              <span class="font-semibold text-emerald-300">Vitalité (Bonus Cœurs)</span>
+              <p class="text-[10px] text-slate-400">+Cœurs de vie max</p>
+            </div>
+            <select id="man-ench-vitality" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white" onchange="calculateManual()">
+              <option value="0">Off (0)</option>
+              <option value="1">I (+3)</option>
+              <option value="3">III (+9)</option>
+              <option value="5">V (+15)</option>
+              <option value="10">X (+35)</option>
+            </select>
+          </div>
+
+          <!-- Immobilisation -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+            <div>
+              <span class="font-semibold text-purple-300">Immobilisation (Pinning)</span>
+              <p class="text-[10px] text-slate-400">Cloue le joueur au sol</p>
+            </div>
+            <select id="man-ench-pinning" class="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-white" onchange="calculateManual()">
+              <option value="0" selected>Off (0)</option>
+              <option value="1">I (+5)</option>
+              <option value="3">III (+15)</option>
+              <option value="5">V (+27)</option>
+            </select>
+          </div>
+
+          <!-- Replantation (Groupe 0 Test) -->
+          <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700 flex justify-between items-center opacity-70">
+            <div>
+              <span class="font-semibold text-slate-400">Replantation (Groupe 0)</span>
+              <p class="text-[10px] text-slate-500">Agricole (Impact combat nul)</p>
+            </div>
+            <span class="px-2 py-1 bg-slate-900 rounded font-mono text-[10px] text-slate-400">+0 pt</span>
+          </div>
+        </div>
+
+        <!-- Result Breakdown Box -->
+        <div id="manual-result-box" class="mt-4 p-4 rounded-lg bg-slate-900/90 border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 3: BLOOD MOON WAVES -->
+  <main id="tab-bloodmoon" class="py-4 space-y-4 hidden">
+    <div class="bg-gradient-to-r from-red-950/80 to-slate-900 p-5 rounded-xl border border-red-800/60 shadow-xl space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase font-bold tracking-widest text-red-400">Rituel de l'Autel du Nether</span>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">🩸 Simulateur Quitte ou Double</h2>
+          <p class="text-xs text-slate-300">Arène 10x10 — Plus vous survivez, plus le multiplicateur de butin et de niveau explose !</p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <span class="text-[10px] uppercase text-slate-400 block">Vague Actuelle</span>
+            <span id="bm-wave-num" class="text-2xl font-black font-mono text-red-500">Vague 3</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <button onclick="changeWave(1)" class="px-2 py-0.5 bg-red-800 hover:bg-red-700 text-white rounded text-xs font-bold">▲</button>
+            <button onclick="changeWave(-1)" class="px-2 py-0.5 bg-red-950 hover:bg-red-900 text-white rounded text-xs font-bold">▼</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-red-900/40 text-center">
+        <div class="bg-red-950/40 p-2 rounded border border-red-900/30">
+          <span class="text-[10px] text-slate-400 block">Multiplicateur</span>
+          <span id="bm-mult" class="font-mono font-bold text-red-300">1.20x</span>
+        </div>
+        <div class="bg-red-950/40 p-2 rounded border border-red-900/30">
+          <span class="text-[10px] text-slate-400 block">Mob Griefing</span>
+          <span class="font-mono font-bold text-emerald-400">DÉSACTIVÉ 🛡️</span>
+        </div>
+        <div class="bg-red-950/40 p-2 rounded border border-red-900/30">
+          <span class="text-[10px] text-slate-400 block">KeepInventory</span>
+          <span class="font-mono font-bold text-emerald-400">ACTIF (Gear Sûr)</span>
+        </div>
+        <div class="bg-red-950/40 p-2 rounded border border-red-900/30">
+          <span class="text-[10px] text-slate-400 block">En cas de Mort</span>
+          <span class="font-mono font-bold text-red-400">Perte du Butin Rituel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave Roster List -->
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Escouade d'Assaut Invoquée (5 Monstres)</h4>
+        <button onclick="generateBloodMoonWave()" class="text-xs text-red-400 hover:text-red-300 font-semibold">🎲 Régénérer l'escouade</button>
+      </div>
+      <div id="bm-roster" class="grid grid-cols-1 md:grid-cols-5 gap-3">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // --- DATABASE ---
+    const MOBS = [
+      { id: 'zombie', name: 'Zombie', base: 6, icon: '🧟', weapons: ['iron_sword', 'diamond_sword', 'none'] },
+      { id: 'skeleton', name: 'Squelette', base: 8, icon: '🏹', weapons: ['bow'] },
+      { id: 'spider', name: 'Araignée', base: 8, icon: '🕷️', weapons: ['none'] },
+      { id: 'wither_skeleton', name: 'Wither Squelette', base: 22, icon: '💀', weapons: ['stone_sword', 'diamond_sword'] },
+      { id: 'piglin_brute', name: 'Piglin Brute', base: 25, icon: '🐗', weapons: ['golden_axe', 'netherite_axe'] },
+      { id: 'drowned', name: 'Noyé', base: 14, icon: '🔱', weapons: ['trident', 'none'] }
+    ];
+
+    const WEAPONS = {
+      none: { name: 'Mains nues', points: 0 },
+      stone_sword: { name: 'Épée en Pierre', points: 4 },
+      bow: { name: 'Arc en Bois', points: 4 },
+      iron_sword: { name: 'Épée en Fer', points: 8 },
+      golden_axe: { name: 'Hache en Or', points: 6 },
+      diamond_sword: { name: 'Épée en Diamant', points: 16 },
+      trident: { name: 'Trident Océanique', points: 24 },
+      netherite_axe: { name: 'Hache en Netherite', points: 24 }
+    };
+
+    const ARMORS = [
+      { id: 'none', name: 'Aucune Armure', points: 0 },
+      { id: 'leather', name: 'Armure en Cuir', points: 7 },
+      { id: 'iron', name: 'Armure en Fer', points: 22 },
+      { id: 'diamond', name: 'Armure en Diamant', points: 39 },
+      { id: 'netherite', name: 'Armure en Netherite', points: 55 }
+    ];
+
+    const ENCHANTS = [
+      { id: 'sharpness', name: 'Tranchant', max: 10, pts: [0, 4, 8, 12, 16, 20, 25, 30, 35, 40, 45], type: 'weapon' },
+      { id: 'power', name: 'Puissance', max: 10, pts: [0, 4, 8, 12, 16, 20, 25, 30, 35, 40, 45], type: 'bow' },
+      { id: 'vampirism', name: 'Vampirisme', max: 10, pts: [0, 5, 10, 15, 20, 25, 31, 37, 43, 49, 55], type: 'melee' },
+      { id: 'steadfast', name: 'Inébranlable', max: 10, pts: [0, 5, 10, 15, 20, 25, 31, 37, 43, 49, 55], type: 'armor' },
+      { id: 'vitality', name: 'Vitalité', max: 10, pts: [0, 3, 6, 9, 12, 15, 19, 23, 27, 31, 35], type: 'armor' },
+      { id: 'pinning', name: 'Immobilisation', max: 5, pts: [0, 5, 10, 15, 20, 27], type: 'bow' },
+      { id: 'berserker', name: 'Berserker', max: 10, pts: [0, 5, 10, 15, 20, 25, 31, 37, 43, 49, 55], type: 'melee' },
+      { id: 'precision', name: 'Impact Cinétique', max: 10, pts: [0, 4, 8, 12, 16, 20, 25, 30, 35, 40, 45], type: 'melee' }
+    ];
+
+    let currentTargetLevel = 45;
+    let currentWave = 3;
+
+    // --- REVERSE SPAWNER LOGIC ---
+    function generateMob(targetLvl) {
+      // 1. Pick base mob
+      let mob = MOBS[Math.floor(Math.random() * MOBS.length)];
+      if (targetLvl < 15) mob = MOBS.find(m => m.id === 'zombie' || m.id === 'spider') || mob;
+      if (targetLvl > 70 && Math.random() < 0.7) mob = MOBS.find(m => m.id === 'wither_skeleton' || m.id === 'piglin_brute') || mob;
+
+      let remaining = targetLvl - mob.base;
+      if (remaining < 0) remaining = 0;
+
+      // 2. Pick Armor
+      let armor = ARMORS[0];
+      if (remaining >= 50 && targetLvl >= 80) armor = ARMORS[4]; // Netherite
+      else if (remaining >= 35 && targetLvl >= 50) armor = ARMORS[3]; // Diamant
+      else if (remaining >= 20 && targetLvl >= 25) armor = ARMORS[2]; // Fer
+      else if (remaining >= 7) armor = ARMORS[1]; // Cuir
+      remaining -= armor.points;
+
+      // 3. Pick Weapon
+      let weaponId = mob.weapons[Math.floor(Math.random() * mob.weapons.length)];
+      let weapon = WEAPONS[weaponId] || WEAPONS.none;
+      remaining -= weapon.points;
+
+      // 4. Distribute Enchantments
+      let enchants = [];
+      let availableEnchants = ENCHANTS.filter(e => {
+        if (e.type === 'bow' && weaponId !== 'bow') return false;
+        if (e.type === 'melee' && weaponId === 'bow') return false;
+        return true;
+      });
+
+      while (remaining >= 4 && availableEnchants.length > 0) {
+        let pickIdx = Math.floor(Math.random() * availableEnchants.length);
+        let ench = availableEnchants.splice(pickIdx, 1)[0];
+        
+        // Choose level based on remaining budget & target level
+        let maxLvl = targetLvl > 80 ? ench.max : (targetLvl > 40 ? Math.min(5, ench.max) : 3);
+        let chosenLvl = 1;
+        for (let l = maxLvl; l >= 1; l--) {
+          if (ench.pts[l] <= remaining) {
+            chosenLvl = l;
+            break;
+          }
+        }
+        remaining -= ench.pts[chosenLvl];
+        enchants.push({ name: ench.name, level: chosenLvl, points: ench.pts[chosenLvl] });
+      }
+
+      let finalLevel = mob.base + armor.points + weapon.points + enchants.reduce((sum, e) => sum + e.points, 0);
+      
+      // Calculate scaled HP & Rank
+      let hp = 20;
+      let rank = 'STANDARD';
+      let badgeClass = 'badge-standard';
+
+      if (finalLevel >= 100) {
+        rank = 'BOSS ☠';
+        badgeClass = 'badge-boss';
+        hp = Math.round(20 * (3.0 + finalLevel * 0.05));
+      } else if (finalLevel >= 30) {
+        rank = 'ÉLITE ✦';
+        badgeClass = 'badge-elite';
+        hp = Math.round(20 * (1.5 + finalLevel * 0.02));
+      }
+
+      return { mob, armor, weapon, enchants, finalLevel, hp, rank, badgeClass };
+    }
+
+    function renderMobCard(mobData) {
+      const container = document.getElementById('mob-card');
+      let enchantsHtml = mobData.enchants.length > 0 
+        ? mobData.enchants.map(e => `<span class="px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-[11px] text-amber-300 font-mono">${e.name} ${roman(e.level)} <span class="text-slate-500">(+${e.points})</span></span>`).join(' ')
+        : '<span class="text-slate-500 italic text-xs">Aucun enchantement</span>';
+
+      container.innerHTML = `
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-3 border-b border-slate-700 gap-2">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">${mobData.mob.icon}</span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-base text-white">${mobData.mob.name}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold ${mobData.badgeClass}">${mobData.rank}</span>
+              </div>
+              <span class="text-xs font-mono text-slate-400">Nametag : [Nv. ${mobData.finalLevel}] ${mobData.mob.name} ${mobData.rank === 'ÉLITE ✦' ? 'Élite' : ''}</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-2xl font-black font-mono text-red-400">Nv. ${mobData.finalLevel}</span>
+            <span class="text-xs text-slate-400 block font-mono">PV : ${mobData.hp} HP (${Math.round(mobData.hp/2)} ❤️)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 py-3 text-xs">
+          <div class="bg-slate-800/60 p-2.5 rounded border border-slate-700/60">
+            <span class="text-[10px] uppercase text-slate-400 block font-semibold">Armure Portée</span>
+            <span class="text-slate-200 font-medium">${mobData.armor.name}</span>
+            <span class="text-slate-500 font-mono text-[10px] block mt-0.5">(+${mobData.armor.points} pts de niveau)</span>
+          </div>
+
+          <div class="bg-slate-800/60 p-2.5 rounded border border-slate-700/60">
+            <span class="text-[10px] uppercase text-slate-400 block font-semibold">Arme en Main</span>
+            <span class="text-slate-200 font-medium">${mobData.weapon.name}</span>
+            <span class="text-slate-500 font-mono text-[10px] block mt-0.5">(+${mobData.weapon.points} pts de niveau)</span>
+          </div>
+
+          <div class="bg-slate-800/60 p-2.5 rounded border border-slate-700/60">
+            <span class="text-[10px] uppercase text-slate-400 block font-semibold">Poids Espèce Base</span>
+            <span class="text-slate-200 font-medium">${mobData.mob.name} Naturel</span>
+            <span class="text-slate-500 font-mono text-[10px] block mt-0.5">(+${mobData.mob.base} pts)</span>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <span class="text-[10px] uppercase text-slate-400 block font-semibold mb-1.5">Enchantements Actifs Générés</span>
+          <div class="flex flex-wrap gap-1.5">${enchantsHtml}</div>
+        </div>
+      `;
+    }
+
+    function roman(num) {
+      const lookup = {X:10,IX:9,V:5,IV:4,I:1};
+      let r = '';
+      for (let i in lookup) {
+        while (num >= lookup[i]) { r += i; num -= lookup[i]; }
+      }
+      return r;
+    }
+
+    function updateTargetLevel(val) {
+      currentTargetLevel = parseInt(val);
+      document.getElementById('target-lvl-display').innerText = 'Nv. ' + val;
+      regenerate();
+    }
+
+    function setQuickLvl(val) {
+      document.getElementById('target-lvl-slider').value = val;
+      updateTargetLevel(val);
+    }
+
+    function regenerate() {
+      let data = generateMob(currentTargetLevel);
+      renderMobCard(data);
+    }
+
+    // --- TAB 2: MANUAL CALCULATOR ---
+    function calculateManual() {
+      let base = parseInt(document.getElementById('man-mob').value);
+      let wep = parseInt(document.getElementById('man-weapon').value);
+      let arm = parseInt(document.getElementById('man-armor').value);
+      
+      let enchSt = parseInt(document.getElementById('man-ench-steadfast').value);
+      let enchVamp = parseInt(document.getElementById('man-ench-vampirism').value);
+      let enchSharp = parseInt(document.getElementById('man-ench-sharpness').value);
+      let enchVit = parseInt(document.getElementById('man-ench-vitality').value);
+      let enchPin = parseInt(document.getElementById('man-ench-pinning').value);
+
+      let enchPts = (enchSt > 0 ? ENCHANTS.find(e=>e.id==='steadfast').pts[enchSt] : 0) +
+                    (enchVamp > 0 ? ENCHANTS.find(e=>e.id==='vampirism').pts[enchVamp] : 0) +
+                    (enchSharp > 0 ? ENCHANTS.find(e=>e.id==='sharpness').pts[enchSharp] : 0) +
+                    (enchVit > 0 ? ENCHANTS.find(e=>e.id==='vitality').pts[enchVit] : 0) +
+                    (enchPin > 0 ? ENCHANTS.find(e=>e.id==='pinning').pts[enchPin] : 0);
+
+      let total = base + wep + arm + enchPts;
+      let rank = total >= 100 ? 'BOSS ☠' : (total >= 30 ? 'ÉLITE ✦' : 'STANDARD');
+      let badge = total >= 100 ? 'badge-boss' : (total >= 30 ? 'badge-elite' : 'badge-standard');
+
+      document.getElementById('manual-result-box').innerHTML = `
+        <div>
+          <span class="text-xs text-slate-400 block">Formule détaillée :</span>
+          <span class="font-mono text-xs text-slate-300">Base (${base}) + Arme (${wep}) + Armure (${arm}) + Enchants (${enchPts})</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="px-2 py-0.5 rounded text-xs font-bold ${badge}">${rank}</span>
+          <span class="text-2xl font-black font-mono text-amber-400">Nv. ${total}</span>
+        </div>
+      `;
+    }
+
+    // --- TAB 3: BLOOD MOON WAVES ---
+    function changeWave(delta) {
+      currentWave = Math.max(1, currentWave + delta);
+      document.getElementById('bm-wave-num').innerText = 'Vague ' + currentWave;
+      let mult = (1.0 + 0.10 * (currentWave - 1)).toFixed(2);
+      document.getElementById('bm-mult').innerText = mult + 'x';
+      generateBloodMoonWave();
+    }
+
+    function generateBloodMoonWave() {
+      const container = document.getElementById('bm-roster');
+      container.innerHTML = '';
+      
+      let mult = 1.0 + 0.10 * (currentWave - 1);
+      let baseTarget = Math.round(25 * mult);
+
+      for (let i = 0; i < 5; i++) {
+        let mobTarget = baseTarget + Math.floor(Math.random() * 8) - 3;
+        let mobData = generateMob(mobTarget);
+        
+        let card = document.createElement('div');
+        card.className = "bg-slate-900/90 p-3 rounded-lg border border-red-900/40 space-y-2 flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xl">${mobData.mob.icon}</span>
+              <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${mobData.badgeClass}">${mobData.rank}</span>
+            </div>
+            <span class="font-bold text-xs text-white block">${mobData.mob.name}</span>
+            <span class="text-[11px] font-mono text-red-400 font-semibold">Nv. ${mobData.finalLevel}</span>
+            <span class="text-[10px] text-slate-400 block">${mobData.weapon.name}</span>
+          </div>
+          <div class="text-[10px] text-slate-400 border-t border-slate-800 pt-1.5 font-mono">
+            PV : ${mobData.hp} HP
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    // --- TABS CONTROL ---
+    function setTab(tab) {
+      document.getElementById('tab-reverse').classList.add('hidden');
+      document.getElementById('tab-manual').classList.add('hidden');
+      document.getElementById('tab-bloodmoon').classList.add('hidden');
+
+      document.getElementById('tab-btn-reverse').className = 'px-3 py-1.5 rounded text-[var(--muted-foreground,#94a3b8)] hover:text-white transition-all';
+      document.getElementById('tab-btn-manual').className = 'px-3 py-1.5 rounded text-[var(--muted-foreground,#94a3b8)] hover:text-white transition-all';
+      document.getElementById('tab-btn-bloodmoon').className = 'px-3 py-1.5 rounded text-[var(--muted-foreground,#94a3b8)] hover:text-white transition-all';
+
+      document.getElementById('tab-' + tab).classList.remove('hidden');
+      document.getElementById('tab-btn-' + tab).className = 'px-3 py-1.5 rounded tab-active transition-all';
+
+      if (tab === 'manual') calculateManual();
+      if (tab === 'bloodmoon') generateBloodMoonWave();
+    }
+
+    // Init
+    regenerate();
+  </script>
+</body>
+</html>

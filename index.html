@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChouChou Mod — Le Guide Aventure & Wiki Officiel</title>
-  <meta name="description" content="Guide illustré et complet du ChouChou Mod pour Minecraft 1.21.1 : Sacs à dos évolutifs, Réseau de Waystones, Système de Transcendance, Décrafting et Grimoire des 89 Sorts.">
+  <meta name="description" content="Guide illustré et complet du ChouChou Mod pour Minecraft 1.26.3 : Sacs à dos évolutifs, Réseau de Waystones, Système de Transcendance, Décrafting et Grimoire des 89 Sorts.">
   <link rel="stylesheet" href="assets/css/app.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔮</text></svg>">
 </head>
@@ -15,7 +15,7 @@
     <a href="#home" class="brand-wrapper">
       <span class="brand-icon">🔮</span>
       <span class="brand-title">ChouChou Mod</span>
-      <span class="badge-version">Aventure 1.21.1</span>
+      <span class="badge-version">Aventure 1.26.3</span>
     </a>
 
     <nav class="main-nav">
@@ -25,7 +25,10 @@
       <button class="nav-btn" data-tab="transcendence"><span>🔮</span> Transcendance</button>
       <button class="nav-btn" data-tab="workshop"><span>🛠️</span> L'Atelier</button>
       <button class="nav-btn" data-tab="enchantments"><span>✨</span> Grimoire (89)</button>
-      <button class="nav-btn" data-tab="loot"><span>🏆</span> Trésors 1.21</button>
+      <button class="nav-btn" data-tab="loot"><span>🏆</span> Tables de Loot</button>
+      <button class="nav-btn" data-tab="mc-patchnotes"><span>📜</span> Maj Minecraft</button>
+      <button class="nav-btn" data-tab="chouchou-changelog"><span>🚀</span> Changelog ChouChou</button>
+      <button class="nav-btn" data-tab="simulator"><span>🌙</span> Simulateur RPG</button>
     </nav>
   </header>
 
@@ -130,18 +133,60 @@
           <span class="feature-link-btn">Consulter les enchantements ➔</span>
         </div>
 
-        <!-- Box Trésors -->
+        <!-- Box Trésors & Tables de Loot -->
         <div class="feature-box" onclick="window.switchTabTo('loot')">
           <div>
             <div class="feature-header">
               <div class="feature-icon-circle">🏆</div>
-              <h3 class="feature-title">Le Carnet d'Expédition 1.21</h3>
+              <h3 class="feature-title">Tables de Loot & Butins</h3>
             </div>
             <p class="feature-desc">
-              Où trouver la Masse, le Noyau Lourd, les Élytres et le modèle Silence le plus rare du jeu ? Tous les pourcentages d'apparition pour vos explorations.
+              Où trouver la Masse, le Noyau Lourd, les Élytres et le modèle Silence le plus rare du jeu ? Tous les pourcentages d'apparition pour vos explorations 1.26.3.
             </p>
           </div>
-          <span class="feature-link-btn">Ouvrir le carnet de butins ➔</span>
+          <span class="feature-link-btn">Ouvrir les tables de loot ➔</span>
+        </div>
+
+        <!-- Box Maj Minecraft -->
+        <div class="feature-box" onclick="window.switchTabTo('mc-patchnotes')">
+          <div>
+            <div class="feature-header">
+              <div class="feature-icon-circle">📜</div>
+              <h3 class="feature-title">Notes de Mise à Jour Minecraft</h3>
+            </div>
+            <p class="feature-desc">
+              Tout sur les nouveautés du jeu de base 1.26.3 : Chambres d'Épreuve, Lances d'estoc, Masse, Crafter automatique et armures de loup.
+            </p>
+          </div>
+          <span class="feature-link-btn">Consulter les nouveautés vanilla ➔</span>
+        </div>
+
+        <!-- Box Changelog ChouChou -->
+        <div class="feature-box" onclick="window.switchTabTo('chouchou-changelog')">
+          <div>
+            <div class="feature-header">
+              <div class="feature-icon-circle">🚀</div>
+              <h3 class="feature-title">Changelog Mod ChouChou</h3>
+            </div>
+            <p class="feature-desc">
+              L'historique complet des versions du mod, ajouts du mobilier, ajustements de sorts, refontes QoL et systèmes coop.
+            </p>
+          </div>
+          <span class="feature-link-btn">Voir l'historique des versions ➔</span>
+        </div>
+
+        <!-- Box Simulateur RPG -->
+        <div class="feature-box" onclick="window.switchTabTo('simulator')">
+          <div>
+            <div class="feature-header">
+              <div class="feature-icon-circle">🌙</div>
+              <h3 class="feature-title">Simulateur RPG & Mobs</h3>
+            </div>
+            <p class="feature-desc">
+              Générateur interactif de monstres selon le niveau ciblé, calculateur manuel et simulateur des 5 vagues de la Lune de Sang.
+            </p>
+          </div>
+          <span class="feature-link-btn">Lancer le simulateur ➔</span>
         </div>
       </div>
     </section>
@@ -660,7 +705,7 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- TAB 7: BUTINS & TRÉSORS 1.21 -->
+    <!-- TAB 7: TABLES DE LOOT & BUTINS -->
     <!-- ========================================== -->
     <section id="tab-loot" class="tab-content">
       <div class="hero-card">
@@ -669,9 +714,9 @@
           <div class="hero-gradient-overlay"></div>
           <div class="hero-content">
             <span class="hero-pill">🏆 Carnet d'Expédition</span>
-            <h1 class="hero-title">Les Trésors & Tables de Butin 1.21</h1>
+            <h1 class="hero-title">Les Tables de Butin & Loots 1.26.3</h1>
             <p class="hero-subtitle">
-              Le guide officiel pour savoir exactement où chercher et quoi trouver dans les donjons, chambres d'épreuve et cités antiques.
+              Le répertoire officiel des récompenses et taux de drop dans les coffres-forts, donjons, bastions et cités antiques.
             </p>
           </div>
         </div>
@@ -680,11 +725,282 @@
       <div id="loot-container"></div>
     </section>
 
+    <!-- ========================================== -->
+    <!-- TAB 8: NOTES DE MISE À JOUR MINECRAFT 1.26.3 -->
+    <!-- ========================================== -->
+    <section id="tab-mc-patchnotes" class="tab-content">
+      <div class="hero-card">
+        <div class="hero-media-wrapper">
+          <img src="assets/showcase_craft.jpg" alt="Mises à Jour Minecraft" class="hero-img">
+          <div class="hero-gradient-overlay"></div>
+          <div class="hero-content">
+            <span class="hero-pill">📜 Patch Notes Vanilla</span>
+            <h1 class="hero-title">Mises à Jour Majeures de Minecraft (1.26.3)</h1>
+            <p class="hero-subtitle">
+              Tout ce que le jeu de base intègre : Chambres d'Épreuve, Lances d'estoc, la Masse dévastatrice, le Breeze et le cuivre façonné.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-cards-grid">
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🗡️</span>
+            <div>
+              <div class="module-title">Les Lances & Le Combat d'Estoc</div>
+              <span class="badge-version">Arme Nouvelle Génération</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Nouvelle catégorie d'armes dédiée aux attaques d'estoc à portée étendue. Permet d'effectuer une ruée propulsée vers l'avant grâce à l'enchantement exclusif <strong>Élan (Lunge)</strong>.
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            📌 <em>Astuce : Le saut décuple la vitesse de ruée de la lance en avant !</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🔨</span>
+            <div>
+              <div class="module-title">La Masse (Mace) & Dégâts Aériens</div>
+              <span class="badge-version">Arme Lourde Écrasante</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Forgée en combinant un <strong>Noyau Lourd</strong> (Heavy Core) et une <strong>Baguette de Brise</strong> (Breeze Rod). Inflige des dégâts sans plafond proportionnels à la hauteur de chute du joueur, et annule entièrement les dégâts de chute lors d'un coup réussi !
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            ✨ <em>Enchantements dédiés : Densité (+dégâts/bloc), Brèche (-armure adverse), Rafale de vent (propulsion aérienne).</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🗝️</span>
+            <div>
+              <div class="module-title">Chambres d'Épreuve (Trial Chambers)</div>
+              <span class="badge-version">Donjons Procéduraux</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Vastes structures souterraines générées en tuf et en cuivre. Les <strong>Générateurs d'Épreuve</strong> adaptent le nombre et la puissance des monstres au nombre de joueurs présents en coop.
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            🎁 <em>Ouvrez les Coffres-forts (Vaults) avec les Clés d'Épreuve pour obtenir des trésors garantis pour chaque joueur.</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🌪️</span>
+            <div>
+              <div class="module-title">Le Breeze (Bourrasque)</div>
+              <span class="badge-version">Créature Aérienne</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Monstre hostile tourbillonnant exclusif aux Chambres d'Épreuve. Il bondit agilement et tire des charges de vent qui repoussent violemment les joueurs et activent les mécanismes redstone.
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            💥 <em>Drop des Baguettes de Brise et des Projectiles de vent utilisables à la main.</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🏹</span>
+            <div>
+              <div class="module-title">Le Bogged (Embourbé)</div>
+              <span class="badge-version">Variant Squelette</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Nouvelle variante de squelette recouvert de mousses et de champignons, peuplant les marais et certaines salles d'épreuve. Ses flèches infligent l'effet Poison !
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            🍄 <em>Peut être tondu avec des cisailles pour récolter des champignons rouges et bruns.</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🟧</span>
+            <div>
+              <div class="module-title">Le Cuivre & Le Tuf Façonné</div>
+              <span class="badge-version">Construction & Déco</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Arrivée massive des blocs de cuivre décoratifs : portes, trappes, grilles ajourées et ampoules de cuivre (Copper Bulbs) dont la luminosité s'ajuste selon l'oxydation et l'état de bascule.
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            🧱 <em>Famille complète du Tuf : poli, briques, ciselé et escaliers/dalles assortis.</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">🐺</span>
+            <div>
+              <div class="module-title">Armures de Loup & Variantes Canines</div>
+              <span class="badge-version">Compagnons</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            9 races de loups adaptées aux biomes (forêt, taïga, savane, badlands...). Confectionnez des armures de loup résistantes grâce aux écailles de tatou (Armadillo Scutes), teintables en 16 couleurs !
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            🛡️ <em>L'armure absorbe la totalité des dégâts reçus jusqu'à se fendre (réparable aux écailles).</em>
+          </div>
+        </div>
+
+        <div class="module-card">
+          <div class="module-header">
+            <span class="module-icon">⚙️</span>
+            <div>
+              <div class="module-title">L'Autocrafter (Crafter)</div>
+              <span class="badge-version">Automatisation Redstone</span>
+            </div>
+          </div>
+          <p class="module-desc">
+            Bloc d'artisanat autonome révolutionnaire ! Alimenté par un signal redstone, il assemble automatiquement les recettes programmées dans sa grille $3\times 3$ et éjecte le produit fini.
+          </p>
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;">
+            📦 <em>Chaque case de la grille peut être verrouillée pour imposer un patron de craft précis.</em>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 9: CHANGELOG DU MOD CHOUCHOU -->
+    <!-- ========================================== -->
+    <section id="tab-chouchou-changelog" class="tab-content">
+      <div class="hero-card">
+        <div class="hero-media-wrapper">
+          <img src="assets/waystone_landscape.jpg" alt="ChouChou Changelog" class="hero-img">
+          <div class="hero-gradient-overlay"></div>
+          <div class="hero-content">
+            <span class="hero-pill">🚀 Journal des Évolutions</span>
+            <h1 class="hero-title">Changelog Officiel du Mod ChouChou</h1>
+            <p class="hero-subtitle">
+              L'historique complet des versions, nouveaux systèmes, rééquilibrages et améliorations de confort pour notre coop.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <!-- Version 1.3.0 -->
+        <div class="module-card" style="border-left: 4px solid #ef4444;">
+          <div class="module-header">
+            <span class="module-icon">🪑</span>
+            <div>
+              <div class="module-title">Version 1.3.0 — Mobilier, Établi de Menuisier & QoL</div>
+              <span class="badge-version" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #fca5a5;">En cours de déploiement</span>
+            </div>
+          </div>
+          <ul style="list-style: none; padding: 0; margin-top: 0.75rem; font-size: 0.95rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>✨ <strong>Nouveau Module Mobilier & Décorations (500 éléments)</strong> : Ajout complet de mobilier d'intérieur et d'extérieur sans lag (chaises avec assise réelle sur clic droit, tables à pieds connectables, volets ouvrables, jardinières de fenêtre, cheminées avec fumée, chandeliers en fer forgé, poutres de plafond).</li>
+            <li>🛠️ <strong>Établi de Menuisier Dédié</strong> : Station artisanale 1-pour-1 (type Stonecutter pour le bois) réunissant toutes les créations de meubles sans polluer la table de craft normale.</li>
+            <li>⚔️ <strong>Renommage Élan ➔ Impact Cinétique</strong> : L'enchantement de combat <code>chouchou:precision</code> est renommé en <em>Impact Cinétique</em> pour éviter la collision avec l'enchantement officiel de lance Vanilla.</li>
+            <li>👁️ <strong>Rôdeur Nocturne Stabilisé</strong> : Vision nocturne prolongée et réinitialisation douce pour supprimer tout effet stroboscopique/épileptique à l'écran.</li>
+            <li>🗑️ <strong>Module Void Amélioré</strong> : Filtrage et incinération automatique garantis à chaque entrée d'item dans le sac (pleinement fonctionnel avec les entonnoirs et fermes à mobs).</li>
+            <li>🪓 <strong>Bûcheron & Racines</strong> : L'enchantement Bûcheron mine désormais instantanément les racines de palétuvier en plus des troncs.</li>
+            <li>🩸 <strong>Architecture RPG & Blood Moon</strong> : Planification du système de niveaux de mobs (Plafond joueur anti-one-shot $L_{\text{mob}} \le L_{\text{joueur}}$) et du rituel d'arène Quitte ou Double dans le Nether.</li>
+          </ul>
+        </div>
+
+        <!-- Version 1.2.0 -->
+        <div class="module-card" style="border-left: 4px solid #8b5cf6;">
+          <div class="module-header">
+            <span class="module-icon">🔮</span>
+            <div>
+              <div class="module-title">Version 1.2.0 — Transcendance & Géodes d'Éther</div>
+              <span class="badge-version">Mise à jour majeure</span>
+            </div>
+          </div>
+          <ul style="list-style: none; padding: 0; margin-top: 0.75rem; font-size: 0.95rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>🔮 <strong>Table de Transcendance</strong> : Système permettant de briser le plafond des enchantements pour atteindre les rangs ultimes VI à X.</li>
+            <li>💎 <strong>Cristaux d'Éther & Minerais de l'End</strong> : Nouvelle ressource rare générée dans l'End servant de catalyseur pour les fusions d'élite.</li>
+            <li>⚙️ <strong>Concasseur de Géodes</strong> : Bloc d'artisanat spécialisé pour traiter les géodes brutes et extraire les gemmes nobles.</li>
+          </ul>
+        </div>
+
+        <!-- Version 1.1.0 -->
+        <div class="module-card" style="border-left: 4px solid #3b82f6;">
+          <div class="module-header">
+            <span class="module-icon">🎒</span>
+            <div>
+              <div class="module-title">Version 1.1.0 — Survie Améliorée & Réseau Coop</div>
+              <span class="badge-version">Mise à jour majeure</span>
+            </div>
+          </div>
+          <ul style="list-style: none; padding: 0; margin-top: 0.75rem; font-size: 0.95rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>🎒 <strong>Sacs à Dos Évolutifs Autonomes</strong> : Intégration complète du système Sophisticated Backpacks (du cuir à la netherite, teintures et 14 modules d'upgrades) sans aucune librairie externe.</li>
+            <li>🗿 <strong>Réseau Global de Waystones</strong> : Stèles de téléportation partagées instantanément entre tous les joueurs de la coop sans visite préalable requise.</li>
+            <li>📖 <strong>Table de Désenchantement</strong> : Extraction des enchantements vers des livres vierges sans perte d'équipement.</li>
+            <li>♻️ <strong>Table de Décraftage</strong> : Récupération des composants d'objets craftés avec coût d'XP équitable.</li>
+            <li>🪽 <strong>Slot Élytre Dédié</strong> : Permet de porter simultanément un plastron protecteur et les élytres.</li>
+          </ul>
+        </div>
+
+        <!-- Version 1.0.0 -->
+        <div class="module-card" style="border-left: 4px solid #10b981;">
+          <div class="module-header">
+            <span class="module-icon">🧱</span>
+            <div>
+              <div class="module-title">Version 1.0.0 — Fondations & Noyau ChouChou</div>
+              <span class="badge-version">Lancement</span>
+            </div>
+          </div>
+          <ul style="list-style: none; padding: 0; margin-top: 0.75rem; font-size: 0.95rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>🚀 <strong>Noyau ChouChou (NeoForge 26.3)</strong> : Socle autonome zéro dépendance externe.</li>
+            <li>⚡ <strong>Architecture Modulaire Hot-Toggle</strong> : Activation et désactivation des fonctionnalités à la volée en pleine partie sans redémarrage ni risque de corruption de monde.</li>
+            <li>⚔️ <strong>Refonte de l'Enclume & Suppression des Incompatibilités</strong> : Suppression définitive de la limite « Trop cher ! », cumul des protections et Infinité + Raccommodage.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- TAB 10: SIMULATEUR RPG & BLOOD MOON -->
+    <!-- ========================================== -->
+    <section id="tab-simulator" class="tab-content">
+      <div class="hero-card">
+        <div class="hero-media-wrapper">
+          <img src="assets/showcase_craft.jpg" alt="Simulateur RPG ChouChou" class="hero-img">
+          <div class="hero-gradient-overlay"></div>
+          <div class="hero-content">
+            <span class="hero-pill">🌙 Moteur RPG & Blood Moon</span>
+            <h1 class="hero-title">Simulateur de Mobs & Lune de Sang</h1>
+            <p class="hero-subtitle">
+              Testez la génération procédurale des créatures selon le niveau cible, utilisez le calculateur manuel et lancez les vagues d'arène.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+        <a href="simulator.html" target="_blank" class="feature-link-btn" style="text-decoration: none; padding: 0.5rem 1rem; background: var(--surface-color); border: 1px solid var(--surface-border); border-radius: var(--radius-sm); font-size: 0.9rem; color: #38bdf8; display: inline-flex; items-center; gap: 0.5rem;">
+          <span>⤢</span> Ouvrir en plein écran
+        </a>
+      </div>
+
+      <div style="background: #0f172a; border-radius: 12px; border: 1px solid #334155; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);">
+        <iframe src="simulator.html" style="width: 100%; height: 900px; border: none; display: block;" title="Simulateur RPG Mobs & Blood Moon"></iframe>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
   <footer class="app-footer">
-    <p>ChouChou Mod (Minecraft 1.21.1 NeoForge) • Guide & Wiki Conçu pour l'Aventure</p>
+    <p>ChouChou Mod (Minecraft 1.26.3 NeoForge) • Guide & Wiki Conçu pour l'Aventure</p>
   </footer>
 
   <script src="assets/js/app.js"></script>
